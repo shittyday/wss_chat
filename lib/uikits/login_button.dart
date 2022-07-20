@@ -1,58 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:wss_chat/common/app_text_style.dart';
 
 class LoginButton extends StatefulWidget {
-  const LoginButton({Key? key}) : super(key: key);
-
+  const LoginButton({Key? key, required this.value}) : super(key: key);
+  final ValueNotifier<bool> value;
   @override
   State<LoginButton> createState() => _LoginButtonState();
 }
 
 class _LoginButtonState extends State<LoginButton> {
-  Color color = Colors.green;
-  double opacity = 1.0;
+  Color color = const Color.fromRGBO(110, 201, 230, 1);
+  bool checked = false;
+  @override
+  void dispose() {
+    widget.value.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {},
         onTapDown: (down) {
           setState(() {
-            if (opacity == 1.0) {
-              opacity = 0.2;
+            if (!checked) {
+              color = const Color.fromRGBO(110, 201, 230, 1).withOpacity(0.2);
+              checked = !checked;
             } else {
-              opacity = 1.0;
+              checked = !checked;
+              color = const Color.fromRGBO(110, 201, 230, 1);
             }
+            widget.value.value = checked;
           });
         },
         onTapUp: (up) {
           setState(() {
-            if (opacity == 1.0) {
-              opacity = 0.2;
+            if (!checked) {
+              color = const Color.fromRGBO(110, 201, 230, 1).withOpacity(0.2);
+              checked = !checked;
             } else {
-              opacity = 1.0;
+              checked = !checked;
+              color = const Color.fromRGBO(110, 201, 230, 1);
             }
+            widget.value.value = checked;
           });
         },
         onTapCancel: () {},
-        child: AnimatedOpacity(
-            opacity: opacity,
-            duration: const Duration(milliseconds: 100),
+        child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
             child: Container(
                 decoration: BoxDecoration(
-                    color: color, borderRadius: BorderRadius.circular(46)),
-                padding: const EdgeInsets.all(15),
+                    color: color, borderRadius: BorderRadius.circular(21)),
+                height: 50,
                 margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width / 10,
-                    right: MediaQuery.of(context).size.width / 10,
-                    top: MediaQuery.of(context).size.height / 3),
+                    left: MediaQuery.of(context).size.width / 6.29,
+                    right: MediaQuery.of(context).size.width / 6.29,
+                    top: MediaQuery.of(context).size.height / 3,
+                    bottom: 10),
                 alignment: Alignment.center,
-                child: Text(AppLocalizations.of(context)!.login,
+                child: Text('Вход',
                     textWidthBasis: TextWidthBasis.longestLine,
-                    style: GoogleFonts.roboto(
-                        color: Colors.black,
-                        decoration: TextDecoration.none,
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal)))));
+                    style: AppTextStyle.objSans15W800.copyWith(
+                        color: !checked
+                            ? Colors.white
+                            : const Color.fromRGBO(110, 201, 230, 1))))));
   }
 }
