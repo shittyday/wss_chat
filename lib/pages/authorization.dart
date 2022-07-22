@@ -31,7 +31,7 @@ class Authorization extends StatelessWidget {
           const Positioned(
               bottom: 100, left: 0, right: 0, child: LoginButton()),
           const Positioned(
-              bottom: 80, left: 0, right: 0, child: RegistrationButton()),
+              bottom: 65, left: 0, right: 0, child: RegistrationButton()),
           const Align(
               alignment: Alignment(0, -0.3), child: AnimatedTextContainer()),
           Align(

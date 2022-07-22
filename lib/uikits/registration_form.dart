@@ -54,6 +54,7 @@ class RregistratioFormState extends State<RegistrationForm> {
         color: Colors.white,
         child: Column(
           children: [
+            const SizedBox(height: 20),
             Expanded(
                 child: CustomTextField(
               controller: nameController,
@@ -86,6 +87,7 @@ class RregistratioFormState extends State<RegistrationForm> {
               icon: const Icon(Icons.lock_open,
                   color: Color.fromRGBO(110, 201, 230, 1)),
             )),
+            const SizedBox(height: 20)
           ],
         ),
       ),
