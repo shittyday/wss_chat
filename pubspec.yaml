@@ -31,7 +31,6 @@ flutter:
     - family: Object Sans
       fonts:
         - asset: assets/fonts/os_reg.ttf
-        - weight: 800
   assets:
     - assets/logo_icon.svg
     - assets/logo.png

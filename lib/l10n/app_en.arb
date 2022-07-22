@@ -2,5 +2,6 @@
     "appTitle":"Messenger",
     "helloTitle":"Hello, a new messenger is waiting for you, check it out. Good luck!",
     "login":"Login",
-    "registeration":"Registration"
+    "registration":"Registration",
+    "hifriend":"Hi, friend"
 }

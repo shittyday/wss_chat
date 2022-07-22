@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wss_chat/common/routes_const.dart';
 import 'package:wss_chat/controllers/authorize.dart';
 import 'package:wss_chat/states/authorize_state.dart';
+import 'package:wss_chat/uikits/loader.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _InitPageState extends State<InitPage> {
           height: MediaQuery.of(context).size.height,
           color: Colors.white,
           alignment: Alignment.center,
-          child: const CircularProgressIndicator(),
+          child: const Loader(),
         ));
   }
 }

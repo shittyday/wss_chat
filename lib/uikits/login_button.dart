@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wss_chat/common/app_text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginButton extends StatefulWidget {
-  const LoginButton({Key? key, required this.value}) : super(key: key);
-  final ValueNotifier<bool> value;
+  const LoginButton({Key? key}) : super(key: key);
+
   @override
   State<LoginButton> createState() => _LoginButtonState();
 }
@@ -11,12 +12,6 @@ class LoginButton extends StatefulWidget {
 class _LoginButtonState extends State<LoginButton> {
   Color color = const Color.fromRGBO(110, 201, 230, 1);
   bool checked = false;
-  @override
-  void dispose() {
-    widget.value.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +25,6 @@ class _LoginButtonState extends State<LoginButton> {
               checked = !checked;
               color = const Color.fromRGBO(110, 201, 230, 1);
             }
-            widget.value.value = checked;
           });
         },
         onTapUp: (up) {
@@ -42,7 +36,6 @@ class _LoginButtonState extends State<LoginButton> {
               checked = !checked;
               color = const Color.fromRGBO(110, 201, 230, 1);
             }
-            widget.value.value = checked;
           });
         },
         onTapCancel: () {},
@@ -58,7 +51,7 @@ class _LoginButtonState extends State<LoginButton> {
                     top: MediaQuery.of(context).size.height / 3,
                     bottom: 10),
                 alignment: Alignment.center,
-                child: Text('Вход',
+                child: Text(AppLocalizations.of(context).login,
                     textWidthBasis: TextWidthBasis.longestLine,
                     style: AppTextStyle.objSans15W800.copyWith(
                         color: !checked
