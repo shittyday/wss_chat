@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:wss_chat/uikits/avatar_container.dart';
 import 'package:wss_chat/uikits/registration_button.dart';
 import 'package:wss_chat/uikits/registration_form.dart';
 
@@ -52,15 +54,7 @@ class _RegistraitionState extends State<Registraition> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 6,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 4,
-                        color: const Color.fromRGBO(110, 201, 230, 1)),
-                    shape: BoxShape.circle,
-                    color: Colors.amber),
-              ),
+              const AvatarContainer(),
               RegistrationForm(validate: validate),
               StreamBuilder<bool>(
                 stream: validate.stream,

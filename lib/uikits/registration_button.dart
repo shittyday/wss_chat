@@ -21,7 +21,9 @@ class _RegistrationButtonState extends State<RegistrationButton> {
     final bool enabled = widget.enabled ?? true;
     return widget.newStyle
         ? GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(AppRoutes.home);
+            },
             onTapDown: enabled
                 ? (down) {
                     setState(() {

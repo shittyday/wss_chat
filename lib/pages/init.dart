@@ -25,13 +25,13 @@ class _InitPageState extends State<InitPage> {
         listener: (context, state) {
           switch (state) {
             case AuthorizeState.authorized:
-              Navigator.of(context).pushNamed(AppRoutes.home);
+              Navigator.of(context).pushNamed(AppRoutes.authorization);
               break;
             case AuthorizeState.unauthorized:
-              Navigator.of(context).pushNamed(AppRoutes.home);
+              Navigator.of(context).pushNamed(AppRoutes.authorization);
               break;
             case AuthorizeState.failure:
-              Navigator.of(context).pushNamed(AppRoutes.home);
+              Navigator.of(context).pushNamed(AppRoutes.authorization);
               break;
             default:
               break;
