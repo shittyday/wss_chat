@@ -1,9 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:wss_chat/uikits/registration_button.dart';
 import 'package:wss_chat/uikits/registration_form.dart';
 
-class Registraition extends StatelessWidget {
+class Registraition extends StatefulWidget {
   const Registraition({Key? key}) : super(key: key);
+
+  @override
+  State<Registraition> createState() => _RegistraitionState();
+}
+
+class _RegistraitionState extends State<Registraition> {
+  final validate = StreamController<bool>.broadcast();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    validate.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +61,20 @@ class Registraition extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.amber),
               ),
-              const RegistrationForm(),
-              const RegistrationButton(newStyle: true)
+              RegistrationForm(validate: validate),
+              StreamBuilder<bool>(
+                stream: validate.stream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return RegistrationButton(
+                      newStyle: true,
+                      enabled: snapshot.data,
+                    );
+                  }
+                  return const RegistrationButton(
+                      newStyle: true, enabled: false);
+                },
+              )
             ],
           ),
         ));
