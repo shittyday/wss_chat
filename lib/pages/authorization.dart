@@ -12,7 +12,8 @@ class Authorization extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
+    return Scaffold(
+        body: CustomPaint(
       painter: const FilledContainer(color: Colors.white),
       child: Stack(
         children: [
@@ -42,6 +43,6 @@ class Authorization extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

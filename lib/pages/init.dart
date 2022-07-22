@@ -37,12 +37,6 @@ class _InitPageState extends State<InitPage> {
               break;
           }
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          color: Colors.white,
-          alignment: Alignment.center,
-          child: const Loader(),
-        ));
+        child: const Scaffold(body: Center(child: Loader())));
   }
 }

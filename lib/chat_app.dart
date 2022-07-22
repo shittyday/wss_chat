@@ -11,7 +11,9 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (_) => Authorize(),
-        child: const MaterialApp(
+        child: MaterialApp(
+          color: Colors.white,
+          theme: ThemeData.light(),
           title: 'Messenger',
           onGenerateRoute: ChatRoutes.onGenerateRoute,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
