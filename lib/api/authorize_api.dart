@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:wss_chat/common/common_types.dart';
 import 'package:wss_chat/models/user.dart';
 
 class AuthorizeApi {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'http://10.0.2.2/',
+    baseUrl: chatEnvironmet.environmentConfig.baseAddress,
     connectTimeout: 30000,
     sendTimeout: 30000,
     receiveTimeout: 30000,

@@ -53,20 +53,38 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      height: 65,
       child: TextField(
+        clipBehavior: Clip.antiAlias,
+        maxLines: 1,
+        expands: false,
+        minLines: 1,
+        showCursor: false,
+        onTap: () {
+          setState(() {});
+        },
+        textCapitalization: widget.password
+            ? TextCapitalization.none
+            : TextCapitalization.words,
         controller: widget.controller,
         textAlign: TextAlign.left,
         keyboardAppearance: Theme.of(context).brightness,
         obscureText: hidePassword && widget.password,
         decoration: InputDecoration(
+          suffixIconConstraints:
+              const BoxConstraints(maxHeight: 10, maxWidth: 10),
+          // suffixIcon: ,
+          contentPadding: const EdgeInsets.all(10),
+          disabledBorder: InputBorder.none,
+          border: OutlineInputBorder(
+              gapPadding: 10, borderRadius: BorderRadius.circular(10)),
           errorText: errorText,
           icon: widget.icon,
           suffix: widget.password
               ? IconButton(
                   alignment: Alignment.center,
                   padding: EdgeInsets.zero,
-                  iconSize: 25,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                   splashRadius: 1,
                   onPressed: () {
