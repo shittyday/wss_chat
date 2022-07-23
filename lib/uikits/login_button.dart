@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wss_chat/common/app_text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wss_chat/common/routes_const.dart';
 
 class LoginButton extends StatefulWidget {
   const LoginButton({Key? key}) : super(key: key);
@@ -15,7 +16,9 @@ class _LoginButtonState extends State<LoginButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(AppRoutes.login);
+        },
         onTapDown: (down) {
           setState(() {
             if (!checked) {
@@ -48,7 +51,6 @@ class _LoginButtonState extends State<LoginButton> {
                 margin: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width / 6.29,
                     right: MediaQuery.of(context).size.width / 6.29,
-                    top: MediaQuery.of(context).size.height / 3,
                     bottom: 10),
                 alignment: Alignment.center,
                 child: Text(AppLocalizations.of(context).login,
