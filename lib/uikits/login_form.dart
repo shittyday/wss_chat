@@ -2,8 +2,28 @@ import 'package:flutter/material.dart';
 
 import 'custom_text_field.dart';
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm(
+      {Key? key,
+      required this.nameController,
+      required this.passwordController})
+      : super(key: key);
+  final TextEditingController nameController;
+  final TextEditingController passwordController;
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +42,17 @@ class LoginForm extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: widget.nameController,
                 hintText: 'Name',
                 icon: const Icon(Icons.person_outline,
                     color: Color.fromRGBO(110, 201, 230, 1)),
               ),
               const SizedBox(height: 20),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: widget.passwordController,
                 hintText: 'Password',
-                icon: const Icon(Icons.person_outline,
+                password: true,
+                icon: const Icon(Icons.lock_outline,
                     color: Color.fromRGBO(110, 201, 230, 1)),
               ),
               const SizedBox(height: 20),

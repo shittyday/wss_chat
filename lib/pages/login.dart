@@ -1,10 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:wss_chat/uikits/avatar_container.dart';
 import 'package:wss_chat/uikits/login_button.dart';
 import 'package:wss_chat/uikits/login_form.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final validate = StreamController<bool>.broadcast();
+  final nameController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    nameController.addListener(() {
+      validate.add(nameController.text != '' && passwordController.text != '');
+    });
+    passwordController.addListener(() {
+      validate.add(nameController.text != '' && passwordController.text != '');
+    });
+  }
+
+  @override
+  void dispose() {
+    validate.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +58,19 @@ class Login extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [AvatarContainer(), LoginForm(), LoginButton()],
+          children: [
+            const AvatarContainer(),
+            LoginForm(
+                nameController: nameController,
+                passwordController: passwordController),
+            StreamBuilder<bool>(
+              initialData: false,
+              stream: validate.stream,
+              builder: (context, snapshot) {
+                return LoginButton(validate: true, enabled: snapshot.data);
+              },
+            )
+          ],
         ),
       ),
     );

@@ -43,7 +43,6 @@ class RregistratioFormState extends State<RegistrationForm> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 2,
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
       child: Card(
@@ -55,30 +54,26 @@ class RregistratioFormState extends State<RegistrationForm> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Expanded(
-                child: CustomTextField(
+            CustomTextField(
               controller: nameController,
               hintText: 'Name',
               icon: const Icon(Icons.person_outline,
                   color: Color.fromRGBO(110, 201, 230, 1)),
-            )),
-            Expanded(
-                child: CustomTextField(
+            ),
+            CustomTextField(
               controller: nicknameController,
               hintText: 'Nickname',
               icon: const Icon(Icons.mail_outline,
                   color: Color.fromRGBO(110, 201, 230, 1)),
-            )),
-            Expanded(
-                child: CustomTextField(
+            ),
+            CustomTextField(
               controller: passwordController,
               hintText: 'Password',
               password: true,
               icon: const Icon(Icons.lock_outline,
                   color: Color.fromRGBO(110, 201, 230, 1)),
-            )),
-            Expanded(
-                child: CustomTextField(
+            ),
+            CustomTextField(
               controller: retryPasswordController,
               retryPassword: true,
               password: true,
@@ -86,7 +81,7 @@ class RregistratioFormState extends State<RegistrationForm> {
               hintText: 'Retry Password',
               icon: const Icon(Icons.lock_open,
                   color: Color.fromRGBO(110, 201, 230, 1)),
-            )),
+            ),
             const SizedBox(height: 20)
           ],
         ),
