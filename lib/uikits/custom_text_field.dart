@@ -22,6 +22,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   String? errorText;
+  bool hidePassword = true;
   @override
   void initState() {
     super.initState();
@@ -53,22 +54,31 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      height: 75,
       child: TextField(
         controller: widget.controller,
         textAlign: TextAlign.left,
         keyboardAppearance: Theme.of(context).brightness,
-        obscureText: widget.password,
-        keyboardType: TextInputType.visiblePassword,
+        obscureText: hidePassword && widget.password,
         decoration: InputDecoration(
           errorText: errorText,
           icon: widget.icon,
           suffix: widget.password
-              ? widget.retryPassword
-                  ? const Icon(Icons.visibility_off_outlined,
-                      color: Color.fromRGBO(110, 201, 230, 1))
-                  : const Icon(Icons.visibility_outlined,
-                      color: Color.fromRGBO(110, 201, 230, 1))
+              ? IconButton(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.zero,
+                  iconSize: 25,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  splashRadius: 1,
+                  onPressed: () {
+                    setState(() {
+                      hidePassword = !hidePassword;
+                    });
+                  },
+                  icon: hidePassword
+                      ? const Icon(Icons.visibility_off_outlined,
+                          color: Color.fromRGBO(110, 201, 230, 1))
+                      : const Icon(Icons.visibility_outlined,
+                          color: Color.fromRGBO(110, 201, 230, 1)))
               : null,
           hintText: widget.hintText,
         ),
